@@ -1,4 +1,4 @@
-# go-templ-htmx-vercel-template
+# travel-lists
 
 An example that shows how to use Golang + HTMX + Templ on Vercel 🚀
 

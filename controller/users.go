@@ -1,7 +1,7 @@
 package controller
 
 import (
-	"github.com/jordyvanvorselen/go-templ-htmx-vercel-template/view/list"
+	"github.com/jordyvanvorselen/travel-lists/view/list"
 	"github.com/labstack/echo/v4"
 )
 

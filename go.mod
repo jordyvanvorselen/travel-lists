@@ -1,6 +1,6 @@
-module github.com/jordyvanvorselen/go-templ-htmx-vercel-template
+module github.com/jordyvanvorselen/travel-lists
 
-go 1.21.4
+go 1.21.13
 
 require (
 	github.com/a-h/templ v0.2.513
