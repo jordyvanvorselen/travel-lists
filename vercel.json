@@ -9,5 +9,5 @@
       "dest": "api/router.go"
     }
   ],
-  "git.deploymentEnabled": false,
+  "git.deploymentEnabled": false
 }
