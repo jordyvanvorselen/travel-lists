@@ -35,3 +35,15 @@ We need to install `templ` globally to be able to generate our templates:
     go install github.com/a-h/templ/cmd/templ@latest
     asdf reshim golang
 ```
+
+Because we don't want to manage JS dependencies by hand, we use [NPM](https://www.npmjs.com/) to manage them and [Vite](https://v2.vitejs.dev/) to build them into a single `assets/dist/index.min.js` file, that we can then import in our `templ` templates.
+
+You can build the JavaScript dependencies, you can use:
+
+```sh
+    cd assets
+    npm install
+    npx vite build
+```
+
+Keep in mind that if you add a JavaScript dependency to the package.json, you will need to rebuild using Vite again!

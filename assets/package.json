@@ -1,0 +1,8 @@
+{
+  "devDependencies": {
+    "vite": "^5.4.9"
+  },
+  "dependencies": {
+    "htmx.org": "^1.9.12"
+  }
+}
