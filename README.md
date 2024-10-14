@@ -1,33 +1,30 @@
 # travel-lists
 
-An example that shows how to use Golang + HTMX + Templ on Vercel 🚀
+### Development setup
 
-### A modern tech stack
+Install the required version of Go and other dependencies using [asdf](https://asdf-vm.com/).
 
-Set up a modern tech stack (hosted for free) in just a few minutes:
+```sh
+    asdf plugin add golang https://github.com/asdf-community/asdf-golang
+    asdf plugin add nodejs
 
-- [![Go][go]][go-url]
-- [![Vercel][vercel]][vercel-url]
-- [![htmx][htmx]][htmx-url]
-- [![Templ][templ]][templ-url]
-- [![Echo][echo]][echo-url]
+    # Add the necessary configuration to your Shell configuration: https://github.com/asdf-community/asdf-golang?tab=readme-ov-file#goroot
 
-Feel free to copy this repo and change it to your own needs.
+    asdf install
+```
 
-### Setup
+After installing Go, you might want to install the Go language server [gopls](https://pkg.go.dev/golang.org/x/tools/gopls) for smart autocompletions:
 
-The only thing you need to do is [initializing the project on Vercel](https://vercel.com/new) by importing your repository.
+```sh
+    go install -v golang.org/x/tools/gopls@latest
+    asdf reshim golang
+```
 
-<!-- MARKDOWN LINKS & IMAGES -->
-<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+If you want to automatically recompile the code on code changes, you can use [air](https://github.com/air-verse/air).
 
-[go]: https://img.shields.io/badge/go-000000?style=for-the-badge&logo=go&logoColor=blue
-[go-url]: https://go.dev/
-[htmx]: https://img.shields.io/badge/htmx-000000?style=for-the-badge&logo=htmx&logoColor=white
-[htmx-url]: https://htmx.org/
-[templ]: https://img.shields.io/badge/templ-000000?style=for-the-badge&logo=templ&logoColor=yellow
-[templ-url]: https://templ.guide/
-[echo]: https://img.shields.io/badge/echo-000000?style=for-the-badge&logo=echo&logoColor=white
-[echo-url]: https://echo.labstack.com/
-[vercel]: https://img.shields.io/badge/vercel-000000?style=for-the-badge&logo=vercel&logoColor=white
-[vercel-url]: https://vercel.com/
+```sh
+    go install github.com/air-verse/air@latest
+    asdf reshim golang
+
+    air
+```
