@@ -5,10 +5,14 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     rollupOptions: {
-      input: path.resolve(__dirname, 'index.js'),
+      input: {
+        js: path.resolve(__dirname, 'index.js'),
+        css: path.resolve(__dirname, 'index.css'),
+      },
       output: {
         manualChunks: undefined,
-        entryFileNames: '[name].min.js',
+        entryFileNames: 'index.min.js',
+        assetFileNames: 'index.min.[ext]',
       }
     },
     minify: 'esbuild',
