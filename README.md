@@ -28,3 +28,10 @@ If you want to automatically recompile the code on code changes, you can use [ai
 
     air
 ```
+
+We need to install `templ` globally to be able to generate our templates:
+
+```sh
+    go install github.com/a-h/templ/cmd/templ@latest
+    asdf reshim golang
+```
