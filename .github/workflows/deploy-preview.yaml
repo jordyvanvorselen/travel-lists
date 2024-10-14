@@ -1,13 +1,13 @@
 name: Vercel Preview Deployment
 
+env:
+  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+
 on:
   push:
     branches-ignore:
       - main
-
-env:
-  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 
 jobs:
   Deploy-Preview:
@@ -16,7 +16,7 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Install Vercel CLI
-        run: npm install --global vercel@canary
+        run: npm install --global vercel@latest
 
       - name: Pull Vercel Environment Information
         run: vercel pull --yes --environment=preview --token=${{ secrets.VERCEL_TOKEN }}
