@@ -8,5 +8,5 @@ import (
 type ListHandler struct{}
 
 func (h ListHandler) Index(c echo.Context) error {
-	return render(c, list.Index())
+				return render(c, list.Index())
 }
