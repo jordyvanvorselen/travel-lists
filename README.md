@@ -20,7 +20,24 @@ After installing Go, you might want to install the Go language server [gopls](ht
     asdf reshim golang
 ```
 
-If you want to automatically recompile the code on code changes, you can use [air](https://github.com/air-verse/air).
+We need to install `templ` globally to be able to generate our templates:
+
+```sh
+    go install github.com/a-h/templ/cmd/templ@latest
+    asdf reshim golang
+```
+
+Because we don't want to manage JS dependencies by hand, we use [NPM](https://www.npmjs.com/) to manage them and [Vite](https://v2.vitejs.dev/) to build them into a single `assets/dist/index.min.js` file, that we can then import in our `Templ` templates.
+
+To build the JavaScript dependencies, you can use:
+
+```sh
+    cd assets
+    npm install
+    npx vite build
+```
+
+To start the server which automatically recompiles the code on code changes, use [air](https://github.com/air-verse/air). Air will also build all our `JavaScript`, `CSS` and `Templ` templates and keep them up to date during development:
 
 ```sh
     go install github.com/air-verse/air@latest

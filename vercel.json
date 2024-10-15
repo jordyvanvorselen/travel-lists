@@ -8,5 +8,8 @@
       "src": "/.*",
       "dest": "api/router.go"
     }
-  ]
+  ],
+  "git": {
+    "deploymentEnabled": false
+  }
 }

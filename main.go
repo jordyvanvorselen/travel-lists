@@ -1,9 +1,10 @@
 package main
 
 import (
-	"github.com/jordyvanvorselen/travel-lists/api"
 	"log"
 	"net/http"
+
+	"github.com/jordyvanvorselen/travel-lists/api"
 )
 
 func main() {
