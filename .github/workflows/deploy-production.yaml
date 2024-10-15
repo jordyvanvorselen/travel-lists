@@ -21,5 +21,12 @@ jobs:
       - name: Pull Vercel Environment Information
         run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
 
+      - name: Bundle assets
+        working-directory: ./assets
+        run: npx vite build
+
+      - name: Generate templ templates
+        run: templ generate
+
       - name: Deploy Project Artifacts to Vercel
         run: vercel deploy --prod --token=${{ secrets.VERCEL_TOKEN }}
