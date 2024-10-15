@@ -30,6 +30,9 @@ jobs:
       - name: Generate templ templates
         run: |
           go install github.com/a-h/templ/cmd/templ@latest
+          echo gobin: $GOBIN
+          ls -al $GOBIN
+          echo goroot: $GOROOT
           templ generate
 
       - name: Deploy Project Artifacts to Vercel
