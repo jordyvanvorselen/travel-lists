@@ -1,4 +1,4 @@
-name: Vercel Production Deployment
+name: Deployment to Vercel
 
 env:
   VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
@@ -20,6 +20,11 @@ jobs:
         with:
           go-version-file: ./go.mod
           cache-dependency-path: ./go.sum
+
+      - name: Check formatting
+        run: |
+          output=$(gofmt -l .)
+          test -z "$output" || { echo "$output"; exit 1; }
 
       - name: Install Vercel CLI
         run: npm install --global vercel@latest
