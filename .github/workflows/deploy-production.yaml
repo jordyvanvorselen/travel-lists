@@ -3,23 +3,24 @@ name: Vercel Production Deployment
 env:
   VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
   VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+  ENVIRONMENT: ${{ (github.head_ref || github.ref_name) == 'main' && 'production' || 'preview' }}
 
-on:
-  push:
-    branches:
-      - main
+on: push
 
 jobs:
   Deploy-Production:
     runs-on: ubuntu-latest
     steps:
+      - name: Determine environment
+        run: echo $ENVIRONMENT
+
       - uses: actions/checkout@v3
 
       - name: Install Vercel CLI
         run: npm install --global vercel@latest
 
       - name: Pull Vercel Environment Information
-        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+        run: vercel pull --yes --environment=$ENVIRONMENT --token=${{ secrets.VERCEL_TOKEN }}
 
       - name: Bundle assets
         working-directory: ./assets
@@ -32,5 +33,10 @@ jobs:
           go install github.com/a-h/templ/cmd/templ@latest
           templ generate
 
-      - name: Deploy Project Artifacts to Vercel
+      - name: Deploy production
+        if: env.ENVIRONMENT == 'main'
         run: vercel deploy --prod --token=${{ secrets.VERCEL_TOKEN }}
+
+      - name: Deploy preview
+        if: env.ENVIRONMENT != 'main'
+        run: vercel deploy --token=${{ secrets.VERCEL_TOKEN }}
