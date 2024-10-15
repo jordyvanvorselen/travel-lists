@@ -26,3 +26,4 @@ tmp/
 assets/dist/
 assets/node_modules/
 
+*_templ.go
