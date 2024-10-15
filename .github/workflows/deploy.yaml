@@ -8,7 +8,7 @@ env:
 on: push
 
 jobs:
-  Deploy-Production:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Determine environment
@@ -44,9 +44,9 @@ jobs:
           templ generate
 
       - name: Deploy production
-        if: env.ENVIRONMENT == 'main'
+        if: env.ENVIRONMENT == 'production'
         run: vercel deploy --prod --token=${{ secrets.VERCEL_TOKEN }}
 
       - name: Deploy preview
-        if: env.ENVIRONMENT != 'main'
+        if: env.ENVIRONMENT != 'production'
         run: vercel deploy --token=${{ secrets.VERCEL_TOKEN }}
