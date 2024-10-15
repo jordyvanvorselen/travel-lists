@@ -22,7 +22,9 @@ jobs:
           cache-dependency-path: ./go.sum
 
       - name: Check formatting
-        run: test -z $(gofmt -l .)
+        run: |
+          output=$(gofmt -l .)
+          test -z "$output" || { echo "$output"; exit 1; }
 
       - name: Install Vercel CLI
         run: npm install --global vercel@latest
