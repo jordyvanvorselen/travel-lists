@@ -1,0 +1,16 @@
+package layout
+
+templ Layout(contents templ.Component) {
+	<html>
+		<head>
+			<meta charset="UTF-8"/>
+			<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+			<title>Travel Lists</title>
+			<script src="/assets/dist/index.min.js"></script>
+			<link href="/assets/dist/index.min.css" rel="stylesheet"/>
+		</head>
+		<body>
+			@contents
+		</body>
+	</html>
+}

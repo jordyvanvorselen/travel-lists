@@ -16,7 +16,7 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 
 	e.Static("/assets", "assets")
 
-	e.GET("/", controller.ListHandler{}.Index)
+	e.GET("/", controller.HomeHandler{}.Index)
 	e.GET("/lists", controller.ListHandler{}.Index)
 
 	e.ServeHTTP(w, r)
