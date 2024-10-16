@@ -10,3 +10,7 @@ type ListHandler struct{}
 func (h ListHandler) Index(c echo.Context) error {
 	return render(c, list.Index())
 }
+
+func (h ListHandler) New(c echo.Context) error {
+	return render(c, list.New())
+}
