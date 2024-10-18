@@ -14,7 +14,7 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 	e.Use(middleware.Logger())
 	e.Use(middleware.Recover())
 
-	e.Static("/web/assets", "/web/assets")
+	e.Static("/web/assets", "web/assets")
 
 	e.GET("/", handlers.HomeHandler{}.Index)
 	e.GET("/create-list", handlers.ListHandler{}.New)
