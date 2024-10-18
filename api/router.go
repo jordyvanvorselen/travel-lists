@@ -3,7 +3,7 @@ package api
 import (
 	"net/http"
 
-	"github.com/jordyvanvorselen/travel-lists/internal/handlers"
+	"github.com/jordyvanvorselen/travel-lists/handlers"
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
 )
