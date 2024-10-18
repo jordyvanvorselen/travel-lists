@@ -19,6 +19,7 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 	e.GET("/", controller.HomeHandler{}.Index)
 	e.GET("/create-list", controller.ListHandler{}.New)
 	e.GET("/lists", controller.ListHandler{}.Index)
+	e.POST("/lists", controller.ListHandler{}.Create)
 
 	e.ServeHTTP(w, r)
 }

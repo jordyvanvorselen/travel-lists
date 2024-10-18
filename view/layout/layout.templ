@@ -1,7 +1,7 @@
 package layout
 
 templ Layout(contents templ.Component) {
-	<html>
+	<html class="h-dvh">
 		<head>
 			<meta charset="UTF-8"/>
 			<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -9,7 +9,7 @@ templ Layout(contents templ.Component) {
 			<script src="/assets/dist/index.min.js"></script>
 			<link href="/assets/dist/index.min.css" rel="stylesheet"/>
 		</head>
-		<body hx-boost="true" class="relative">
+		<body hx-boost="true" class="relative w-full h-dvh">
 			@contents
 		</body>
 	</html>

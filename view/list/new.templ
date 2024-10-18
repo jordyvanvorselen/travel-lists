@@ -3,9 +3,9 @@ package list
 templ New() {
 	<section class="w-screen h-screen flex flex-column justify-center items-center">
 		<form class="w-screen p-8 text-center">
-			<h1 class="mb-16 text-4xl font-semibold">Only one more step towards your list...</h1>
-			<input type="text" placeholder="What's the name of your travel list?" class="input input-lg input-bordered w-full mb-10"/>
-			<button class="btn btn-lg btn-wide btn-primary">Continue</button>
+			<h1 class="mb-16 text-4xl font-semibold">One small step towards your list...</h1>
+			<input type="text" placeholder="What's the name of the list?" class="input input-lg input-bordered w-full mb-10"/>
+			<a hx-post="/lists" class="btn btn-lg btn-wide btn-primary">Continue</a>
 		</form>
 	</section>
 }

@@ -14,3 +14,7 @@ func (h ListHandler) Index(c echo.Context) error {
 func (h ListHandler) New(c echo.Context) error {
 	return render(c, list.New())
 }
+
+func (h ListHandler) Create(c echo.Context) error {
+	return render(c, list.Show())
+}
