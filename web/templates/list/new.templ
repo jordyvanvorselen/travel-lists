@@ -4,8 +4,8 @@ templ New() {
 	<section class="w-screen h-screen flex flex-column justify-center items-center">
 		<form class="w-screen p-8 text-center">
 			<h1 class="mb-16 text-4xl font-semibold">One small step towards your list...</h1>
-			<input type="text" placeholder="What's the name of the list?" class="input input-lg input-bordered w-full mb-10"/>
-			<a hx-post="/lists" class="btn btn-lg btn-wide btn-primary">Continue</a>
+			<input type="text" name="name" placeholder="What's the name of the list?" class="input input-lg input-bordered w-full mb-10"/>
+			<button hx-post="/lists" hx-target="body" class="btn btn-lg btn-wide btn-primary">Continue</button>
 		</form>
 	</section>
 }

@@ -3,7 +3,6 @@ package api
 import (
 	"net/http"
 
-	"github.com/jordyvanvorselen/travel-lists/controller"
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
 )
@@ -14,12 +13,12 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 	e.Use(middleware.Logger())
 	e.Use(middleware.Recover())
 
-	e.Static("/assets", "assets")
+	e.Static("/assets", "web/assets")
 
-	e.GET("/", controller.HomeHandler{}.Index)
-	e.GET("/create-list", controller.ListHandler{}.New)
-	e.GET("/lists", controller.ListHandler{}.Index)
-	e.POST("/lists", controller.ListHandler{}.Create)
+	e.GET("/", HomeHandler{}.Index)
+	e.GET("/create-list", ListHandler{}.New)
+	e.GET("/lists/:id", ListHandler{}.Show)
+	e.POST("/lists", ListHandler{}.Create)
 
 	e.ServeHTTP(w, r)
 }
