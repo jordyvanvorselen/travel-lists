@@ -33,7 +33,7 @@ jobs:
         run: vercel pull --yes --environment=$ENVIRONMENT --token=${{ secrets.VERCEL_TOKEN }}
 
       - name: Bundle assets
-        working-directory: ./assets
+        working-directory: ./web/assets
         run: |
           npm install
           npx vite build
