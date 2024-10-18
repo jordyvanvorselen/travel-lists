@@ -5,7 +5,6 @@ go 1.23.2
 require (
 	github.com/a-h/templ v0.2.778
 	github.com/google/uuid v1.6.0
-	github.com/labstack/echo v3.3.10+incompatible
 	github.com/labstack/echo/v4 v4.12.0
 )
 
