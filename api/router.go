@@ -14,11 +14,12 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 	e.Use(middleware.Logger())
 	e.Use(middleware.Recover())
 
-	e.Static("/assets", "web/assets")
+	e.Static("/web/assets", "/web/assets")
 
 	e.GET("/", handlers.HomeHandler{}.Index)
 	e.GET("/create-list", handlers.ListHandler{}.New)
 	e.GET("/lists/:id", handlers.ListHandler{}.Show)
+
 	e.POST("/lists", handlers.ListHandler{}.Create)
 
 	e.ServeHTTP(w, r)
