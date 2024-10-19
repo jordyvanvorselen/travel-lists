@@ -1,0 +1,11 @@
+development:
+  dialect: postgres
+  datasource: host=prodhost dbname=travellists user=${DB_USER} password=${DB_PASSWORD} sslmode=require
+  dir: migrations
+  table: migrations
+
+production:
+  dialect: postgres
+  datasource: host=prodhost dbname=travellists user=${DB_USER} password=${DB_PASSWORD} sslmode=require
+  dir: migrations
+  table: migrations

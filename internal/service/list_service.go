@@ -5,6 +5,6 @@ import (
 	"github.com/jordyvanvorselen/travel-lists/internal/repository"
 )
 
-func Create(list domain.List) (domain.List, error) {
+func CreateList(list domain.List) (domain.List, error) {
 	return repository.Save(list)
 }

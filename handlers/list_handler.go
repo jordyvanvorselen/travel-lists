@@ -6,6 +6,7 @@ import (
 
 	"github.com/google/uuid"
 	"github.com/jordyvanvorselen/travel-lists/internal/domain"
+	"github.com/jordyvanvorselen/travel-lists/internal/service"
 	"github.com/jordyvanvorselen/travel-lists/web/templates/list"
 	"github.com/labstack/echo/v4"
 )
@@ -24,6 +25,11 @@ func (h ListHandler) Create(c echo.Context) error {
 	err := c.Bind(&newList)
 	if err != nil {
 		return c.String(http.StatusBadRequest, "Bad request")
+	}
+
+	newList, err = service.CreateList(newList)
+	if err != nil {
+		return c.String(http.StatusUnprocessableEntity, "Unprocessable entity")
 	}
 
 	c.Response().Header().Set("HX-Redirect", fmt.Sprintf("/lists/%s", newList.Id.String()))
