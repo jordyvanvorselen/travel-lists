@@ -1,0 +1,5 @@
+[psql]
+dbname  = "travel-lists"
+host    = "localhost"
+user    = "postgres"
+sslmode = "disable"

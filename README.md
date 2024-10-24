@@ -1,6 +1,8 @@
 # travel-lists
 
-### Development setup
+## Local development
+
+### Installing dependencies
 
 Install the required version of Go and other dependencies using [asdf](https://asdf-vm.com/).
 
@@ -27,7 +29,29 @@ We need to install `templ` globally to be able to generate our templates:
     asdf reshim golang
 ```
 
-Because we don't want to manage JS dependencies by hand, we use [NPM](https://www.npmjs.com/) to manage them and [Vite](https://v2.vitejs.dev/) to build them into a single `web/assets/dist/index.min.js` file, that we can then import in our `Templ` templates.
+We also need to install `sql-migrate` to apply our database migrations:
+
+```sh
+    go install github.com/rubenv/sql-migrate/...@latest
+    asdf reshim golang
+```
+
+Now, we need to create a database and run the database migrations. We use `docker` and `docker-compose` for that. Install both of them and run the following commands to create your database:
+
+```sh
+    docker compose up
+
+    sql-migrate up
+```
+
+So, because we don't want to write all our SQL ourselves, we will install `sqlboiler`:
+
+```sh
+    go install github.com/volatiletech/sqlboiler/v4@latest
+    go install github.com/volatiletech/sqlboiler/v4/drivers/sqlboiler-psql@latest
+```
+
+To manage JS dependencies, we use [NPM](https://www.npmjs.com/) to manage them and [Vite](https://v2.vitejs.dev/) to build them into a single `web/assets/dist/index.min.js` file, that we can then import in our `Templ` templates.
 
 To build the JavaScript dependencies, you can use:
 
@@ -37,11 +61,23 @@ To build the JavaScript dependencies, you can use:
     npx vite build
 ```
 
-To start the server which automatically recompiles the code on code changes, use [air](https://github.com/air-verse/air). Air will also build all our `JavaScript`, `CSS` and `Templ` templates and keep them up to date during development:
+To start the server which automatically recompiles the code on code changes, use [air](https://github.com/air-verse/air). Air will also build all our `JavaScript`, `CSS`, `sqlboiler` files and `Templ` templates and keep them up to date during development:
 
 ```sh
     go install github.com/air-verse/air@latest
     asdf reshim golang
+
+    air
+```
+
+### Running the application
+
+You can run the application and the needed dependencies using:
+
+```sh
+    docker compose up --detach
+    
+    sql-migrate up
 
     air
 ```

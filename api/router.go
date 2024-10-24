@@ -1,7 +1,11 @@
 package api
 
 import (
+	"database/sql"
 	"net/http"
+
+	_ "github.com/lib/pq"
+	"github.com/volatiletech/sqlboiler/v4/boil"
 
 	"github.com/jordyvanvorselen/travel-lists/handlers"
 	"github.com/labstack/echo/v4"
@@ -10,6 +14,13 @@ import (
 
 func Handler(w http.ResponseWriter, r *http.Request) {
 	e := echo.New()
+
+	db, err := sql.Open("postgres", "dbname=travel-lists user=postgres sslmode=disable")
+	if err != nil {
+		panic(err)
+	}
+
+	boil.SetDB(db)
 
 	e.Use(middleware.Logger())
 	e.Use(middleware.Recover())

@@ -19,7 +19,7 @@ func (h ListHandler) New(c echo.Context) error {
 
 func (h ListHandler) Create(c echo.Context) error {
 	newList := domain.List{
-		Id: uuid.New(),
+		UUID: uuid.New(),
 	}
 
 	err := c.Bind(&newList)
@@ -27,12 +27,12 @@ func (h ListHandler) Create(c echo.Context) error {
 		return c.String(http.StatusBadRequest, "Bad request")
 	}
 
-	newList, err = service.CreateList(newList)
+	newList, err = service.CreateList(c.Request().Context(), newList)
 	if err != nil {
-		return c.String(http.StatusUnprocessableEntity, "Unprocessable entity")
+		return c.JSON(http.StatusUnprocessableEntity, map[string]string{"error": err.Error()})
 	}
 
-	c.Response().Header().Set("HX-Redirect", fmt.Sprintf("/lists/%s", newList.Id.String()))
+	c.Response().Header().Set("HX-Redirect", fmt.Sprintf("/lists/%s", newList.UUID.String()))
 
 	return c.NoContent(http.StatusOK)
 }
