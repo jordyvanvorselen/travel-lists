@@ -27,8 +27,6 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 		os.Getenv("PSQL_HOST"), os.Getenv("PSQL_USER"), os.Getenv("PSQL_PASS"), os.Getenv("PSQL_SSLMODE"),
 	)
 
-	fmt.Println(connStr)
-
 	db, err := sql.Open("postgres", connStr)
 	if err != nil {
 		panic(err)
