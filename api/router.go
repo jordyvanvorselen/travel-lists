@@ -6,7 +6,6 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/joho/godotenv"
 	_ "github.com/lib/pq"
 	"github.com/volatiletech/sqlboiler/v4/boil"
 
@@ -16,10 +15,6 @@ import (
 )
 
 func Handler(w http.ResponseWriter, r *http.Request) {
-	if err := godotenv.Load(); err != nil {
-		panic(err)
-	}
-
 	e := echo.New()
 
 	connStr := fmt.Sprintf(

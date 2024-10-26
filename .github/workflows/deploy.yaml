@@ -60,9 +60,6 @@ jobs:
           rm sqlboiler.toml
           sqlboiler psql --wipe --add-global-variants
 
-      - name: Add .env file
-        run: env >> .env
-
       - name: Deploy production
         if: env.ENVIRONMENT == 'production'
         run: vercel deploy --prod --token=${{ secrets.VERCEL_TOKEN }}
