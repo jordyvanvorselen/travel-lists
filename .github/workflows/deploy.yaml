@@ -47,16 +47,16 @@ jobs:
           go install github.com/a-h/templ/cmd/templ@latest
           templ generate
 
+      - name: Database migrations
+        run: |
+          go install github.com/rubenv/sql-migrate/...@latest
+          sql-migrate up
+
       - name: Generate models for sqlboiler
         run: |
           go install github.com/volatiletech/sqlboiler/v4@latest
           go install github.com/volatiletech/sqlboiler/v4/drivers/sqlboiler-psql@latest
           sqlboiler psql --wipe --add-global-variants
-
-      - name: Database migrations
-        run: |
-          go install github.com/rubenv/sql-migrate/...@latest
-          sql-migrate up
 
       - name: Deploy production
         if: env.ENVIRONMENT == 'production'
