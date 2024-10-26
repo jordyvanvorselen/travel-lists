@@ -61,6 +61,12 @@ To build the JavaScript dependencies, you can use:
     npx vite build
 ```
 
+To set up the local database connection, we need to set some env variables. Create a `.env` by copying the `env.sample` and setting the correct values:
+
+```sh
+    cp env.sample .env
+```
+
 To start the server which automatically recompiles the code on code changes, use [air](https://github.com/air-verse/air). Air will also build all our `JavaScript`, `CSS`, `sqlboiler` files and `Templ` templates and keep them up to date during development:
 
 ```sh

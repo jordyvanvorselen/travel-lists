@@ -59,7 +59,9 @@ jobs:
           go install github.com/volatiletech/sqlboiler/v4/drivers/sqlboiler-psql@latest
           rm sqlboiler.toml
           sqlboiler psql --wipe --add-global-variants
-          # PSQL_HOST=$PSQL_HOST PSQL_USER=$PSQL_USER PSQL_PASS=$PSQL_PASS PSQL_SSLMODE=$PSQL_SSLMODE PSQL_DBNAME="travel-lists" sqlboiler psql --wipe --add-global-variants
+
+      - name: Add .env file
+        run: env >> .env
 
       - name: Deploy production
         if: env.ENVIRONMENT == 'production'

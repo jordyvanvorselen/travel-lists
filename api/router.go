@@ -2,8 +2,11 @@ package api
 
 import (
 	"database/sql"
+	"fmt"
 	"net/http"
+	"os"
 
+	"github.com/joho/godotenv"
 	_ "github.com/lib/pq"
 	"github.com/volatiletech/sqlboiler/v4/boil"
 
@@ -13,9 +16,20 @@ import (
 )
 
 func Handler(w http.ResponseWriter, r *http.Request) {
+	if err := godotenv.Load(); err != nil {
+		panic(err)
+	}
+
 	e := echo.New()
 
-	db, err := sql.Open("postgres", "dbname=travel-lists user=postgres sslmode=disable")
+	connStr := fmt.Sprintf(
+		"host=%s user=%s password=%s port=5432 dbname=travel-lists sslmode=%s",
+		os.Getenv("PSQL_HOST"), os.Getenv("PSQL_USER"), os.Getenv("PSQL_PASS"), os.Getenv("PSQL_SSLMODE"),
+	)
+
+	fmt.Println(connStr)
+
+	db, err := sql.Open("postgres", connStr)
 	if err != nil {
 		panic(err)
 	}

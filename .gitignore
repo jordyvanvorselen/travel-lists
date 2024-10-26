@@ -29,3 +29,4 @@ web/assets/node_modules/
 
 *_templ.go
 
+.env
