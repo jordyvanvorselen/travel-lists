@@ -6,6 +6,6 @@ development:
 
 production:
   dialect: postgres
-  datasource: host=${PSQL_HOST} dbname=travel-lists user=${PSQL_USER} password=${PSQL_PASS} sslmode=require
+  datasource: host=${PSQL_HOST} dbname=travel-lists user=${PSQL_USER} password=${PSQL_PASS} sslmode=${PSQL_SSLMODE}
   dir: migrations
   table: migrations

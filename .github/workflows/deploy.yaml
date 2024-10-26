@@ -7,7 +7,7 @@ env:
   PSQL_HOST: ${{ secrets.PSQL_HOST }}
   PSQL_USER: ${{ secrets.PSQL_USER }}
   PSQL_PASS: ${{ secrets.PSQL_PASS }}
-  PSQL_SSLMODE: require
+  PSQL_SSLMODE: verify-full
 
 on: push
 
