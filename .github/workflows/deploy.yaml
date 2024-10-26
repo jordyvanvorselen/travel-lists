@@ -50,7 +50,7 @@ jobs:
       - name: Database migrations
         run: |
           go install github.com/rubenv/sql-migrate/...@latest
-          sql-migrate up
+          sql-migrate up -env="production"
 
       - name: Generate models for sqlboiler
         run: |
