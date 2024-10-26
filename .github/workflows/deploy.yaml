@@ -8,6 +8,7 @@ env:
   PSQL_USER: ${{ secrets.PSQL_USER }}
   PSQL_PASS: ${{ secrets.PSQL_PASS }}
   PSQL_SSLMODE: verify-full
+  PSQL_DBNAME: travel-lists
 
 on: push
 
@@ -56,8 +57,8 @@ jobs:
         run: |
           go install github.com/volatiletech/sqlboiler/v4@latest
           go install github.com/volatiletech/sqlboiler/v4/drivers/sqlboiler-psql@latest
-          rm sqlboiler.toml
-          PSQL_HOST=$PSQL_HOST PSQL_USER=$PSQL_USER PSQL_PASS=$PSQL_PASS PSQL_SSLMODE=$PSQL_SSLMODE sqlboiler psql --wipe --add-global-variants
+          sqlboiler psql --wipe --add-global-variants
+          # PSQL_HOST=$PSQL_HOST PSQL_USER=$PSQL_USER PSQL_PASS=$PSQL_PASS PSQL_SSLMODE=$PSQL_SSLMODE PSQL_DBNAME="travel-lists" sqlboiler psql --wipe --add-global-variants
 
       - name: Deploy production
         if: env.ENVIRONMENT == 'production'
