@@ -4,8 +4,8 @@ development:
   dir: migrations
   table: migrations
 
-# production:
-#   dialect: postgres
-#   datasource: host=prodhost dbname=travel-lists user=${DB_USER} password=${DB_PASSWORD} sslmode=require
-#   dir: migrations
-#   table: migrations
+production:
+  dialect: postgres
+  datasource: host=${PSQL_HOST} dbname=travel-lists user=${PSQL_USER} password=${PSQL_PASS} sslmode=require
+  dir: migrations
+  table: migrations

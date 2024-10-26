@@ -4,6 +4,10 @@ env:
   VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
   VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
   ENVIRONMENT: ${{ (github.head_ref || github.ref_name) == 'main' && 'production' || 'preview' }}
+  PSQL_HOST: ${{ secrets.PSQL_HOST }}
+  PSQL_USER: ${{ secrets.PSQL_USER }}
+  PSQL_PASS: ${{ secrets.PSQL_PASS }}
+  PSQL_SSLMODE: require
 
 on: push
 
@@ -48,6 +52,11 @@ jobs:
           go install github.com/volatiletech/sqlboiler/v4@latest
           go install github.com/volatiletech/sqlboiler/v4/drivers/sqlboiler-psql@latest
           sqlboiler psql --wipe --add-global-variants
+
+      - name: Database migrations
+        run: |
+          go install github.com/rubenv/sql-migrate/...@latest
+          sql-migrate up
 
       - name: Deploy production
         if: env.ENVIRONMENT == 'production'
