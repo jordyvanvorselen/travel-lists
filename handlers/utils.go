@@ -1,8 +1,8 @@
-package controller
+package handlers
 
 import (
 	"github.com/a-h/templ"
-	"github.com/jordyvanvorselen/travel-lists/view/layout"
+	"github.com/jordyvanvorselen/travel-lists/web/templates/layout"
 	"github.com/labstack/echo/v4"
 )
 

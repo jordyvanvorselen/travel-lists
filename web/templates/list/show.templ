@@ -1,0 +1,24 @@
+package list
+
+import (
+	"fmt"
+	"github.com/jordyvanvorselen/travel-lists/internal/domain"
+)
+
+templ Show(list domain.List, listItems []domain.ListItem) {
+	<div class="w-full h-full flex flex-col justify-center">
+		<h1 class="text-center text-4xl font-bold p-8">{ list.Name }</h1>
+		<section class="grow h-full min-h-0">
+			<ul class="list-disc pl-16 overflow-scroll max-h-full">
+				for _, listItem := range listItems {
+					<li class="p-4">{ listItem.Location }</li>
+				}
+			</ul>
+		</section>
+		<section class="w-full text-center p-8">
+			<form hx-post={ string(templ.URL(fmt.Sprintf("/lists/%s/list-items", list.UUID.String()))) } hx-target="body">
+				<input type="text" name="location" placeholder="Where are we going?" class="input input-lg input-bordered w-full" required/>
+			</form>
+		</section>
+	</div>
+}

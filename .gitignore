@@ -22,8 +22,11 @@ go.work
 .vercel
 
 tmp/
+models/
 
-assets/dist/
-assets/node_modules/
+web/assets/dist/
+web/assets/node_modules/
 
 *_templ.go
+
+.env

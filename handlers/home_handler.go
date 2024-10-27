@@ -1,7 +1,7 @@
-package controller
+package handlers
 
 import (
-	"github.com/jordyvanvorselen/travel-lists/view/home"
+	"github.com/jordyvanvorselen/travel-lists/web/templates/home"
 	"github.com/labstack/echo/v4"
 )
 

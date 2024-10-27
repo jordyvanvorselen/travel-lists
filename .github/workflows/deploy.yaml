@@ -4,6 +4,11 @@ env:
   VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
   VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
   ENVIRONMENT: ${{ (github.head_ref || github.ref_name) == 'main' && 'production' || 'preview' }}
+  PSQL_HOST: ${{ secrets.PSQL_HOST }}
+  PSQL_USER: ${{ secrets.PSQL_USER }}
+  PSQL_PASS: ${{ secrets.PSQL_PASS }}
+  PSQL_SSLMODE: verify-full
+  PSQL_DBNAME: travel-lists
 
 on: push
 
@@ -33,7 +38,7 @@ jobs:
         run: vercel pull --yes --environment=$ENVIRONMENT --token=${{ secrets.VERCEL_TOKEN }}
 
       - name: Bundle assets
-        working-directory: ./assets
+        working-directory: ./web/assets
         run: |
           npm install
           npx vite build
@@ -42,6 +47,18 @@ jobs:
         run: |
           go install github.com/a-h/templ/cmd/templ@latest
           templ generate
+
+      - name: Database migrations
+        run: |
+          go install github.com/rubenv/sql-migrate/...@latest
+          sql-migrate up -env="production"
+
+      - name: Generate models for sqlboiler
+        run: |
+          go install github.com/volatiletech/sqlboiler/v4@latest
+          go install github.com/volatiletech/sqlboiler/v4/drivers/sqlboiler-psql@latest
+          rm sqlboiler.toml
+          sqlboiler psql --wipe --add-global-variants
 
       - name: Deploy production
         if: env.ENVIRONMENT == 'production'

@@ -1,0 +1,11 @@
+development:
+  dialect: postgres
+  datasource: host=localhost dbname=travel-lists user=postgres sslmode=disable
+  dir: migrations
+  table: migrations
+
+production:
+  dialect: postgres
+  datasource: host=${PSQL_HOST} dbname=travel-lists user=${PSQL_USER} password=${PSQL_PASS} sslmode=${PSQL_SSLMODE}
+  dir: migrations
+  table: migrations

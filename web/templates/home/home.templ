@@ -2,8 +2,8 @@ package home
 
 templ Home() {
 	<section
-		class="hero min-h-screen"
-		style="background-image: url(/assets/images/background.webp);"
+		class="hero min-h-full pt-[env(safe-area-inset-top)] pb-[env(safe-area-inset-bottom)] w-full"
+		style="background-image: url(/web/assets/images/background.webp);"
 	>
 		<div class="hero-overlay bg-opacity-90"></div>
 		<div class="hero-content text-center">
@@ -12,7 +12,7 @@ templ Home() {
 				<p class="mb-12 text-lg">
 					Don't forget about those awesome places you still have to visit! Create a beautiful travel list. Completely free.
 				</p>
-				<button class="btn btn-lg btn-wide btn-primary">Get Started</button>
+				<a href="/create-list" class="btn btn-lg btn-wide btn-primary">Get Started</a>
 			</div>
 		</div>
 	</section>
