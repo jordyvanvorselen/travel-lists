@@ -36,9 +36,10 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 
 	e.GET("/", handlers.HomeHandler{}.Index)
 	e.GET("/create-list", handlers.ListHandler{}.New)
-	e.GET("/lists/:id", handlers.ListHandler{}.Show)
+	e.GET("/lists/:uuid", handlers.ListHandler{}.Show)
 
 	e.POST("/lists", handlers.ListHandler{}.Create)
+	e.POST("/lists/:uuid/list-items", handlers.ListItemHandler{}.Create)
 
 	e.ServeHTTP(w, r)
 }

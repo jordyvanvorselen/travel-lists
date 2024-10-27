@@ -9,7 +9,7 @@ import (
 	"github.com/volatiletech/sqlboiler/v4/boil"
 )
 
-func Save(ctx context.Context, list domain.List) (domain.List, error) {
+func SaveList(ctx context.Context, list domain.List) (domain.List, error) {
 	newList := models.List{
 		ID:   list.Id,
 		Name: list.Name,
@@ -23,7 +23,7 @@ func Save(ctx context.Context, list domain.List) (domain.List, error) {
 	return list, nil
 }
 
-func GetByUUID(ctx context.Context, uuid string) (domain.List, error) {
+func GetListByUUID(ctx context.Context, uuid string) (domain.List, error) {
 	var list *models.List
 	var err error
 	var listUUID guuid.UUID

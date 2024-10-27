@@ -7,3 +7,9 @@ type List struct {
 	UUID uuid.UUID
 	Name string `form:"name"`
 }
+
+type ListItem struct {
+	Id       int
+	ListId   int
+	Location string `form:"location"`
+}
