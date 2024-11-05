@@ -1,13 +1,9 @@
 package api
 
 import (
-	"database/sql"
-	"fmt"
 	"net/http"
-	"os"
 
 	_ "github.com/lib/pq"
-	"github.com/volatiletech/sqlboiler/v4/boil"
 
 	"github.com/jordyvanvorselen/travel-lists/handlers"
 	"github.com/labstack/echo/v4"
@@ -17,19 +13,19 @@ import (
 func Handler(w http.ResponseWriter, r *http.Request) {
 	e := echo.New()
 
-	connStr := fmt.Sprintf(
-		"host=%s user=%s password=%s port=5432 dbname=travel-lists sslmode=%s",
-		os.Getenv("PSQL_HOST"), os.Getenv("PSQL_USER"), os.Getenv("PSQL_PASS"), os.Getenv("PSQL_SSLMODE"),
-	)
+	// connStr := fmt.Sprintf(
+	// 	"host=%s user=%s password=%s port=5432 dbname=travel-lists sslmode=%s",
+	// 	os.Getenv("PSQL_HOST"), os.Getenv("PSQL_USER"), os.Getenv("PSQL_PASS"), os.Getenv("PSQL_SSLMODE"),
+	// )
 
-	if boil.GetDB() == nil {
-		db, err := sql.Open("postgres", connStr)
-		if err != nil {
-			panic(err)
-		}
+	// if .GetDB() == nil {
+	// 	db, err := sql.Open("postgres", connStr)
+	// 	if err != nil {
+	// 		panic(err)
+	// 	}
 
-		boil.SetDB(db)
-	}
+	// 	.SetDB(db)
+	// }
 
 	e.Use(middleware.Logger())
 	e.Use(middleware.Recover())
