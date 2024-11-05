@@ -5,7 +5,6 @@ import (
 
 	guuid "github.com/google/uuid"
 	"github.com/jordyvanvorselen/travel-lists/internal/domain"
-	"github.com/jordyvanvorselen/travel-lists/models"
 )
 
 func SaveList(ctx context.Context, list domain.List) (domain.List, error) {

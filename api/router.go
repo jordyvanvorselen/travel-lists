@@ -3,8 +3,6 @@ package api
 import (
 	"net/http"
 
-	_ "github.com/lib/pq"
-
 	"github.com/jordyvanvorselen/travel-lists/handlers"
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
