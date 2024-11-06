@@ -1,15 +1,19 @@
 package domain
 
-import "github.com/google/uuid"
+import (
+	"github.com/google/uuid"
+	"gorm.io/gorm"
+)
 
 type List struct {
-	Id   int
-	UUID uuid.UUID
-	Name string `form:"name"`
+	gorm.Model
+	UUID  uuid.UUID
+	Name  string `form:"name"`
+	Items []ListItem
 }
 
 type ListItem struct {
-	Id       int
-	ListId   int
+	gorm.Model
+	ListID   uint
 	Location string `form:"location"`
 }

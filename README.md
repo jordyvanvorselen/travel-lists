@@ -29,19 +29,10 @@ We need to install `templ` globally to be able to generate our templates:
     asdf reshim golang
 ```
 
-We also need to install `sql-migrate` to apply our database migrations:
-
-```sh
-    go install github.com/rubenv/sql-migrate/...@latest
-    asdf reshim golang
-```
-
 Now, we need to create a database and run the database migrations. We use `docker` and `docker-compose` for that. Install both of them and run the following commands to create your database:
 
 ```sh
     docker compose up
-
-    sql-migrate up
 ```
 
 So, because we don't want to write all our SQL ourselves, we will install `gorm`:

@@ -1,43 +1,24 @@
 package repository
 
 import (
-	"context"
-
 	"github.com/jordyvanvorselen/travel-lists/internal/domain"
+	"gorm.io/gorm"
 )
 
-func SaveListItem(ctx context.Context, listItem domain.ListItem) (domain.ListItem, error) {
-	// newListItem := models.ListItem{
-	// 	ID:       listItem.Id,
-	// 	ListID:   listItem.ListId,
-	// 	Location: listItem.Location,
-	// }
-
-	// if err := newListItem.InsertG(ctx, boil.Infer()); err != nil {
-	// 	return domain.ListItem{}, err
-	// }
+func SaveListItem(db *gorm.DB, listItem domain.ListItem) (domain.ListItem, error) {
+	if db := db.Create(&listItem); db.Error != nil {
+		return domain.ListItem{}, db.Error
+	}
 
 	return listItem, nil
 }
 
-func GetListItemsByListId(ctx context.Context, id int) ([]domain.ListItem, error) {
-	// var listItems []*models.ListItem
-	// var err error
+func GetListItemsByListId(db *gorm.DB, id uint) ([]domain.ListItem, error) {
+	var items []domain.ListItem
 
-	// query := models.ListItemWhere.ListID.EQ(id)
+	if db := db.Where("list_id = ?", id).Find(&items); db.Error != nil {
+		return nil, db.Error
+	}
 
-	// if listItems, err = models.ListItems(query).All(ctx, boil.GetContextDB()); err != nil {
-	// 	return []domain.ListItem{}, err
-	// }
-
-	var domainListItems []domain.ListItem
-	// for _, listItem := range listItems {
-	// 	domainListItems = append(domainListItems, domain.ListItem{
-	// 		Id:       listItem.ID,
-	// 		ListId:   listItem.ListID,
-	// 		Location: listItem.Location,
-	// 	})
-	// }
-
-	return domainListItems, nil
+	return items, nil
 }
