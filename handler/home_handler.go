@@ -1,4 +1,4 @@
-package handlers
+package handler
 
 import (
 	"github.com/jordyvanvorselen/travel-lists/web/templates/home"

@@ -1,16 +1,15 @@
 package service
 
 import (
-	"context"
-
 	"github.com/jordyvanvorselen/travel-lists/internal/domain"
 	"github.com/jordyvanvorselen/travel-lists/internal/repository"
+	"gorm.io/gorm"
 )
 
-func CreateList(ctx context.Context, list domain.List) (domain.List, error) {
-	return repository.SaveList(ctx, list)
+func CreateList(db *gorm.DB, list domain.List) (domain.List, error) {
+	return repository.SaveList(db, list)
 }
 
-func GetListByUUID(ctx context.Context, uuid string) (domain.List, error) {
-	return repository.GetListByUUID(ctx, uuid)
+func GetListByUUID(db *gorm.DB, uuid string) (*domain.List, error) {
+	return repository.GetListByUUID(db, uuid)
 }
