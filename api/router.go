@@ -5,7 +5,6 @@ import (
 
 	"github.com/jordyvanvorselen/travel-lists/database"
 	"github.com/jordyvanvorselen/travel-lists/handler"
-	"github.com/jordyvanvorselen/travel-lists/internal/domain"
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
 	"gorm.io/gorm"
@@ -19,8 +18,6 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 	if db == nil {
 		db = database.Connect()
 	}
-
-	db.AutoMigrate(&domain.List{}, &domain.ListItem{})
 
 	e.Use(middleware.Logger())
 	e.Use(middleware.Recover())
